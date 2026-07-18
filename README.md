@@ -2,7 +2,7 @@
 
 A premium, fully responsive landing page built for the **Web Developer Internship** program at **Cognifyz Technologies**. Designed with a dark "code editor at night" glassmorphism aesthetic — gradients, glass surfaces, scroll animations, and a live-typing hero visual — all built with **pure HTML, CSS, and JavaScript** (no React, no build tools).
 
-🔗 **Live Demo:** [Add your GitHub Pages link here once deployed]
+🔗 **Live Demo:** https://github.com/chinmayachamedia/cognifyz-careers-page
 
 ---
 
