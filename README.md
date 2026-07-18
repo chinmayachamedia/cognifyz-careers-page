@@ -2,7 +2,7 @@
 
 A premium, fully responsive landing page built for the **Web Developer Internship** program at **Cognifyz Technologies**. Designed with a dark "code editor at night" glassmorphism aesthetic — gradients, glass surfaces, scroll animations, and a live-typing hero visual — all built with **pure HTML, CSS, and JavaScript** (no React, no build tools).
 
-🔗 **Live Demo:** https://cognifyz-careers-page.vercel.app/
+🔗 **Live Demo:** [cognifyz-careers-page.vercel.app](https://cognifyz-careers-page.vercel.app/)
 
 ---
 
@@ -65,8 +65,18 @@ That's it — everything runs client-side.
 
 ---
 
-## 🌍 Deployment (GitHub Pages)
+## 🌍 Deployment
 
+This project is currently deployed on **Vercel**:
+👉 **[cognifyz-careers-page.vercel.app](https://cognifyz-careers-page.vercel.app/)**
+
+### Deploying your own copy on Vercel
+1. Push this repo to GitHub
+2. Go to [vercel.com](https://vercel.com) → **Add New Project**
+3. Import the repo — no build settings needed, it's detected as a static site
+4. Deploy — Vercel gives you a live URL immediately, and redeploys automatically on every push to `main`
+
+### Alternative: GitHub Pages
 1. Push this repo to GitHub
 2. Go to **Settings → Pages**
 3. Under **Source**, select the `main` branch and `/ (root)` folder
