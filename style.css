@@ -1,0 +1,941 @@
+/* ==========================================================================
+   COGNIFYZ TECHNOLOGIES — Web Developer Internship Landing Page
+   Design system: space-indigo base, electric indigo + cyan + amber accents,
+   glassmorphism surfaces, Poppins (display/body) + JetBrains Mono (code/labels)
+   ========================================================================== */
+
+:root {
+  /* ---- Color tokens ---- */
+  --color-bg: #0a0e27;
+  --color-bg-alt: #0d1230;
+  --color-indigo: #4f46e5;
+  --color-indigo-light: #818cf8;
+  --color-cyan: #22d3ee;
+  --color-amber: #fbbf24;
+  --color-text: #e9ecff;
+  --color-text-dim: #a6acd9;
+  --color-text-faint: #6b7199;
+
+  /* ---- Glass tokens ---- */
+  --glass-bg: rgba(255, 255, 255, 0.055);
+  --glass-bg-strong: rgba(255, 255, 255, 0.09);
+  --glass-border: rgba(255, 255, 255, 0.14);
+  --glass-blur: 18px;
+
+  /* ---- Gradients ---- */
+  --gradient-primary: linear-gradient(135deg, var(--color-indigo) 0%, #7c3aed 50%, var(--color-cyan) 100%);
+  --gradient-text: linear-gradient(90deg, var(--color-cyan) 0%, var(--color-indigo-light) 55%, var(--color-amber) 100%);
+
+  /* ---- Type ---- */
+  --font-display: 'Poppins', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ---- Layout ---- */
+  --container-w: 1180px;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---- Reset ---- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-display);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; }
+
+.container {
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Respect reduced-motion preference across the whole site */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   AMBIENT BACKGROUND — drifting gradient blobs + faint grid
+   ========================================================================== */
+.bg-scene {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: radial-gradient(ellipse at top, var(--color-bg-alt) 0%, var(--color-bg) 65%);
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.45;
+  will-change: transform;
+}
+
+.blob-indigo {
+  width: 560px; height: 560px;
+  background: var(--color-indigo);
+  top: -120px; left: -140px;
+  animation: drift1 22s ease-in-out infinite;
+}
+
+.blob-cyan {
+  width: 460px; height: 460px;
+  background: var(--color-cyan);
+  top: 30%; right: -160px;
+  opacity: 0.28;
+  animation: drift2 26s ease-in-out infinite;
+}
+
+.blob-amber {
+  width: 380px; height: 380px;
+  background: var(--color-amber);
+  bottom: -140px; left: 30%;
+  opacity: 0.16;
+  animation: drift3 30s ease-in-out infinite;
+}
+
+@keyframes drift1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(60px, 80px) scale(1.1); }
+}
+@keyframes drift2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-70px, 60px) scale(1.08); }
+}
+@keyframes drift3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -50px) scale(1.12); }
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 50% 0%, black 0%, transparent 70%);
+}
+
+/* ==========================================================================
+   SHARED: glass surface, eyebrow labels, gradient text, buttons, sections
+   ========================================================================== */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.28);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  color: var(--color-cyan);
+  margin-bottom: 14px;
+  display: inline-block;
+}
+
+.gradient-text {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+  max-width: 720px;
+}
+
+section {
+  position: relative;
+  padding: 110px 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 32px;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.98rem;
+  border: 1px solid transparent;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), background 0.35s var(--ease), border-color 0.35s var(--ease);
+}
+
+.btn--primary {
+  background: var(--gradient-primary);
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(79, 70, 229, 0.35);
+}
+
+.btn--primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(79, 70, 229, 0.48), 0 0 0 1px rgba(34, 211, 238, 0.4);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-text);
+  border-color: var(--glass-border);
+  backdrop-filter: blur(10px);
+}
+
+.btn--ghost:hover {
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+  transform: translateY(-3px);
+}
+
+.btn--lg {
+  padding: 18px 42px;
+  font-size: 1.05rem;
+}
+
+/* ==========================================================================
+   SCROLL REVEAL — base state; .in-view is toggled by IntersectionObserver
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ==========================================================================
+   NAVBAR
+   ========================================================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  padding: 18px 0;
+  transition: padding 0.35s var(--ease), background 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+.navbar.scrolled {
+  padding: 10px 0;
+  background: rgba(10, 14, 39, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.25rem;
+}
+
+.logo-mark {
+  font-family: var(--font-mono);
+  color: var(--color-cyan);
+  font-size: 1.1rem;
+}
+
+.logo-text { color: var(--color-text); }
+.logo-dot { color: var(--color-amber); }
+
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.nav-link {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--color-text-dim);
+  position: relative;
+  transition: color 0.3s var(--ease);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-text);
+  transition: width 0.3s var(--ease);
+}
+
+.nav-link:hover { color: var(--color-text); }
+.nav-link:hover::after { width: 100%; }
+
+.nav-link--cta {
+  padding: 10px 22px;
+  border-radius: 100px;
+  background: var(--gradient-primary);
+  color: #fff !important;
+}
+.nav-link--cta::after { display: none; }
+.nav-link--cta:hover { transform: translateY(-2px); }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  z-index: 300;
+  padding: 6px;
+}
+
+.hamburger span {
+  width: 24px;
+  height: 2px;
+  background: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.35s var(--ease), opacity 0.35s var(--ease), background 0.35s var(--ease);
+}
+
+.hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Dimmed backdrop behind the mobile menu. It's invisible + click-through
+   (pointer-events: none) until the menu is opened, then fades in and
+   becomes clickable so tapping anywhere outside the menu closes it. */
+.mobile-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 7, 20, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease);
+  z-index: 240;
+}
+
+.mobile-menu-backdrop.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: min(78vw, 340px);
+  background: rgba(10, 14, 39, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-left: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 100px 32px 40px;
+  transform: translateX(100%);
+  /* Smooth slide-in/out transition for the whole panel */
+  transition: transform 0.45s var(--ease);
+  z-index: 250;
+}
+
+.mobile-menu.active { transform: translateX(0); }
+
+.mobile-link {
+  padding: 16px 4px;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--color-text-dim);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  /* Smooth hover feedback + a subtle fade/slide-in for each link */
+  transition: color 0.3s var(--ease), padding-left 0.3s var(--ease),
+    opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  opacity: 0;
+  transform: translateX(16px);
+}
+
+/* When the menu is active, reveal each link with a slight stagger so they
+   cascade in one after another instead of all appearing at once. */
+.mobile-menu.active .mobile-link {
+  opacity: 1;
+  transform: translateX(0);
+}
+.mobile-menu.active .mobile-link:nth-child(1) { transition-delay: 0.05s; }
+.mobile-menu.active .mobile-link:nth-child(2) { transition-delay: 0.1s; }
+.mobile-menu.active .mobile-link:nth-child(3) { transition-delay: 0.15s; }
+.mobile-menu.active .mobile-link:nth-child(4) { transition-delay: 0.2s; }
+.mobile-menu.active .mobile-link:nth-child(5) { transition-delay: 0.25s; }
+.mobile-menu.active .mobile-link:nth-child(6) { transition-delay: 0.3s; }
+
+.mobile-link:hover { color: var(--color-cyan); padding-left: 10px; }
+
+.mobile-link--cta {
+  margin-top: 18px;
+  text-align: center;
+  border: none;
+  border-radius: 100px;
+  background: var(--gradient-primary);
+  color: #fff;
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 120px;
+}
+
+.hero__grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.hero__title {
+  font-size: clamp(2.1rem, 4.6vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 22px;
+}
+
+.hero__subtitle {
+  font-size: 1.08rem;
+  color: var(--color-text-dim);
+  max-width: 520px;
+  margin-bottom: 34px;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 52px;
+}
+
+.hero__stats {
+  display: flex;
+  gap: 40px;
+}
+
+.stat { display: flex; flex-direction: column; }
+
+.stat__value {
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-cyan);
+}
+
+.stat__label {
+  font-size: 0.82rem;
+  color: var(--color-text-faint);
+  margin-top: 2px;
+}
+
+/* ---- Hero signature visual: glass code editor window ---- */
+.hero__visual {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.glow-ring {
+  position: absolute;
+  inset: -30px;
+  border-radius: 32px;
+  background: var(--gradient-primary);
+  opacity: 0.25;
+  filter: blur(50px);
+  z-index: -1;
+}
+
+.code-window {
+  width: 100%;
+  max-width: 460px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.code-window__bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.dot { width: 11px; height: 11px; border-radius: 50%; }
+.dot--red { background: #ff5f56; }
+.dot--yellow { background: #ffbd2e; }
+.dot--green { background: #27c93f; }
+
+.code-window__title {
+  margin-left: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--color-text-faint);
+}
+
+.code-window__body {
+  padding: 26px 22px;
+  min-height: 260px;
+}
+
+.code-window__body pre {
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  line-height: 1.85;
+  color: #c9d1ff;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.cursor {
+  color: var(--color-cyan);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 26px;
+  height: 42px;
+  border: 2px solid var(--glass-border);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  padding-top: 8px;
+}
+
+.scroll-cue span {
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--color-cyan);
+  animation: scrollcue 1.6s ease-in-out infinite;
+}
+
+@keyframes scrollcue {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(14px); opacity: 0; }
+}
+
+/* ==========================================================================
+   ABOUT INTERNSHIP
+   ========================================================================== */
+.about__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 50px;
+  margin-top: 30px;
+  align-items: start;
+}
+
+.about__text p {
+  color: var(--color-text-dim);
+  margin-bottom: 18px;
+  max-width: 560px;
+}
+
+.about__panel {
+  border-radius: var(--radius-lg);
+  padding: 30px 34px;
+}
+
+.meta-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 0.95rem;
+}
+.meta-list li:last-child { border-bottom: none; }
+
+.meta-list__key {
+  font-family: var(--font-mono);
+  color: var(--color-text-faint);
+}
+
+.meta-list__val {
+  color: var(--color-text);
+  font-weight: 500;
+  text-align: right;
+}
+
+/* ==========================================================================
+   BENEFITS
+   ========================================================================== */
+.benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 26px;
+  margin-top: 40px;
+}
+
+.benefit-card {
+  padding: 34px 28px;
+  border-radius: var(--radius-md);
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+
+.benefit-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(34, 211, 238, 0.4);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(34, 211, 238, 0.15);
+}
+
+.benefit-card__icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-cyan);
+  background: rgba(34, 211, 238, 0.1);
+  margin-bottom: 20px;
+}
+
+.benefit-card__icon svg { width: 24px; height: 24px; }
+
+.benefit-card h3 {
+  font-size: 1.12rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.benefit-card p {
+  color: var(--color-text-dim);
+  font-size: 0.94rem;
+}
+
+/* ==========================================================================
+   QUALIFICATIONS
+   ========================================================================== */
+.qualifications__grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 56px;
+  align-items: center;
+}
+
+.qualifications__intro {
+  color: var(--color-text-dim);
+  margin-top: 16px;
+  max-width: 460px;
+}
+
+.checklist {
+  border-radius: var(--radius-lg);
+  padding: 34px 38px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  font-size: 0.98rem;
+  color: var(--color-text);
+}
+
+.check-mark {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--gradient-text);
+  color: var(--color-bg);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   WHY CHOOSE COGNIFYZ
+   ========================================================================== */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px;
+  margin-top: 40px;
+}
+
+.why-card {
+  padding: 34px;
+  border-radius: var(--radius-md);
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+
+.why-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(251, 191, 36, 0.35);
+}
+
+.why-card__tag {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--color-amber);
+  display: inline-block;
+  margin-bottom: 14px;
+}
+
+.why-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.why-card p {
+  color: var(--color-text-dim);
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   CTA
+   ========================================================================== */
+.cta__inner {
+  border-radius: var(--radius-lg);
+  padding: 70px 40px;
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, rgba(79, 70, 229, 0.18), rgba(34, 211, 238, 0.1)), var(--glass-bg);
+}
+
+.cta__inner h2 {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.cta__inner p {
+  color: var(--color-text-dim);
+  max-width: 480px;
+  margin: 0 auto 32px;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.footer {
+  padding: 70px 0 0;
+  border-top: 1px solid var(--glass-border);
+  background: var(--color-bg-alt);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 50px;
+}
+
+.footer__brand p {
+  color: var(--color-text-faint);
+  margin-top: 14px;
+  font-size: 0.92rem;
+  max-width: 240px;
+}
+
+.footer h4 {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-text-faint);
+  font-weight: 500;
+  margin-bottom: 18px;
+  letter-spacing: 0.02em;
+}
+
+.footer__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-text-dim);
+  font-size: 0.94rem;
+  margin-bottom: 14px;
+  transition: color 0.3s var(--ease), transform 0.3s var(--ease);
+  width: fit-content;
+}
+
+.footer__link svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+.footer__link:hover {
+  color: var(--color-cyan);
+  transform: translateX(4px);
+}
+
+.footer__social-icons {
+  display: flex;
+  gap: 14px;
+}
+
+.social-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--glass-border);
+  color: var(--color-text-dim);
+  transition: color 0.3s var(--ease), border-color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+
+.social-icon svg { width: 19px; height: 19px; }
+
+.social-icon:hover {
+  color: var(--color-bg);
+  background: var(--gradient-text);
+  border-color: transparent;
+  transform: translateY(-4px);
+}
+
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 24px 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--color-text-faint);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   Everything above this point is the DESKTOP layout (the default).
+   The media queries below override just enough CSS to reflow that same
+   layout for smaller screens, from largest to smallest:
+
+     1. Laptop / small desktop  → max-width: 1200px
+     2. Tablet                 → max-width: 992px   (nav collapses to hamburger)
+     3. Large phone / small tab→ max-width: 768px
+     4. Phone                  → max-width: 576px
+     5. Small phone            → max-width: 400px
+
+   Bootstrap-style cards and the underlying grid structure (benefit-card,
+   why-card, .container, etc.) are NOT changed here — only column counts,
+   spacing and font sizes are adjusted so those same cards reflow nicely.
+   ========================================================================== */
+
+/* ---- 1. Laptop / small desktop: tighten up side padding a touch ---- */
+@media (max-width: 1200px) {
+  .container { padding: 0 20px; }
+  .hero__grid { gap: 44px; }
+}
+
+/* ---- 2. Tablet: stack two-column sections into one column,
+          switch the top nav for the hamburger + slide-in menu ---- */
+@media (max-width: 992px) {
+  .hero__grid { grid-template-columns: 1fr; gap: 50px; text-align: left; }
+  .hero__visual { order: -1; } /* show the code window above the copy on tablet */
+  .about__grid { grid-template-columns: 1fr; }
+  .qualifications__grid { grid-template-columns: 1fr; }
+  .benefits__grid { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: 1fr; }
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+
+  /* Hide the desktop inline nav links and reveal the hamburger button */
+  .navbar__links { display: none; }
+  .hamburger { display: flex; }
+}
+
+/* ---- 3. Large phone / small tablet: reduce section spacing,
+          let the hero stats wrap instead of overflowing ---- */
+@media (max-width: 768px) {
+  section { padding: 90px 0; }
+  .hero { padding-top: 110px; min-height: auto; }
+  .hero__stats { gap: 24px; flex-wrap: wrap; }
+  .about__panel { padding: 26px 28px; }
+  .footer__grid { gap: 34px; }
+}
+
+/* ---- 4. Phone: single-column cards, full-width buttons,
+          smaller paddings so content never feels cramped ---- */
+@media (max-width: 576px) {
+  section { padding: 70px 0; }
+  .container { padding: 0 18px; }
+  .benefits__grid { grid-template-columns: 1fr; }
+  .footer__grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero__actions { flex-direction: column; }
+  .btn { width: 100%; }
+  .hero__stats { gap: 22px; }
+  .code-window__body { min-height: 220px; padding: 22px 18px; }
+  .checklist { padding: 26px; }
+  .cta__inner { padding: 50px 24px; }
+  .navbar__inner { padding: 0 4px; }
+  .mobile-menu { width: min(82vw, 340px); padding: 90px 26px 32px; }
+}
+
+/* ---- 5. Small phone: trim typography and spacing further so the
+          design still breathes on the narrowest devices ---- */
+@media (max-width: 400px) {
+  .hero__title { font-size: clamp(1.7rem, 8vw, 2.1rem); }
+  .hero__subtitle { font-size: 1rem; }
+  .hero__stats { gap: 16px; }
+  .stat__value { font-size: 1.25rem; }
+  .section-title { font-size: 1.5rem; }
+  .benefit-card, .why-card { padding: 26px 22px; }
+  .checklist { padding: 20px; }
+  .qualifications__grid, .about__grid { gap: 34px; }
+  .cta__inner h2 { font-size: 1.4rem; }
+  .logo-text { font-size: 1.05rem; }
+}

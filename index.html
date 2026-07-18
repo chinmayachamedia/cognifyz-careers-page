@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Developer Internship | Cognifyz Technologies</title>
+  <meta name="description" content="Kickstart your career with the Web Developer Internship at Cognifyz Technologies. Real projects, real mentorship, real growth." />
+
+  <!-- Google Fonts: Poppins (display/body) + JetBrains Mono (code/eyebrow labels) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Ambient background: drifting gradient blobs + grid overlay (sits behind everything) -->
+  <div class="bg-scene" aria-hidden="true">
+    <div class="blob blob-indigo"></div>
+    <div class="blob blob-cyan"></div>
+    <div class="blob blob-amber"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="navbar" id="navbar">
+    <div class="navbar__inner container">
+      <a href="#hero" class="navbar__logo">
+        <span class="logo-mark">&lt;/&gt;</span>
+        <span class="logo-text">Cognifyz<span class="logo-dot">.</span></span>
+      </a>
+
+      <nav class="navbar__links" id="navLinks" aria-label="Primary navigation">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#benefits" class="nav-link">Benefits</a>
+        <a href="#qualifications" class="nav-link">Qualifications</a>
+        <a href="#why-us" class="nav-link">Why Us</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="https://www.cognifyz.com/internships/" target="_blank" rel="noopener noreferrer" class="nav-link nav-link--cta" aria-label="Apply Now for the Cognifyz internship (opens in a new tab)">Apply Now</a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Dark backdrop shown behind the slide-in mobile menu (tap it to close the menu) -->
+  <div class="mobile-menu-backdrop" id="mobileMenuBackdrop"></div>
+
+  <!-- Slide-in mobile navigation menu (hidden on desktop, toggled by the hamburger button) -->
+  <div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation" aria-hidden="true">
+    <a href="#about" class="mobile-link" tabindex="-1">About</a>
+    <a href="#benefits" class="mobile-link" tabindex="-1">Benefits</a>
+    <a href="#qualifications" class="mobile-link" tabindex="-1">Qualifications</a>
+    <a href="#why-us" class="mobile-link" tabindex="-1">Why Us</a>
+    <a href="#contact" class="mobile-link" tabindex="-1">Contact</a>
+    <a href="https://www.cognifyz.com/internships/" target="_blank" rel="noopener noreferrer" class="mobile-link mobile-link--cta" tabindex="-1" aria-label="Apply Now for the Cognifyz internship (opens in a new tab)">Apply Now</a>
+  </div>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <div class="container hero__grid">
+
+        <div class="hero__copy">
+          <p class="eyebrow reveal">// careers/web-development-internship</p>
+          <h1 class="hero__title reveal">
+            Web Developer Internship Opportunities at <span class="gradient-text">Cognifyz Technologies</span>
+          </h1>
+          <p class="hero__subtitle reveal">
+            Write real code for real products. Our internship pairs you with senior engineers,
+            live client projects, and a structured path from your first commit to a job-ready portfolio.
+          </p>
+          <div class="hero__actions reveal">
+            <a href="https://www.cognifyz.com/internships/" target="_blank" rel="noopener noreferrer" class="btn btn--primary" aria-label="Apply Now for the Cognifyz internship (opens in a new tab)">Apply Now</a>
+            <a href="#about" class="btn btn--ghost">Learn More</a>
+          </div>
+
+          <div class="hero__stats reveal">
+            <div class="stat">
+              <span class="stat__value">4–12</span>
+              <span class="stat__label">weeks, flexible</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">100%</span>
+              <span class="stat__label">remote friendly</span>
+            </div>
+            <div class="stat">
+              <span class="stat__value">1:1</span>
+              <span class="stat__label">mentor matching</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Signature element: glassmorphic code editor window with live typing animation -->
+        <div class="hero__visual reveal">
+          <div class="code-window glass">
+            <div class="code-window__bar">
+              <span class="dot dot--red"></span>
+              <span class="dot dot--yellow"></span>
+              <span class="dot dot--green"></span>
+              <span class="code-window__title">intern.js</span>
+            </div>
+            <div class="code-window__body">
+              <pre><code id="typedCode"></code><span class="cursor" id="cursor">|</span></pre>
+            </div>
+          </div>
+          <div class="glow-ring" aria-hidden="true"></div>
+        </div>
+
+      </div>
+
+      <div class="scroll-cue" aria-hidden="true">
+        <span></span>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT INTERNSHIP ============ -->
+    <section class="about" id="about">
+      <div class="container">
+        <p class="eyebrow reveal">// about-the-program</p>
+        <h2 class="section-title reveal">Not a coffee-run internship. A build-real-things internship.</h2>
+
+        <div class="about__grid">
+          <div class="about__text reveal">
+            <p>
+              The Cognifyz Web Developer Internship is built for people who learn by shipping.
+              You'll work inside our actual development pipeline — writing components, fixing bugs,
+              reviewing pull requests, and deploying features that real users touch.
+            </p>
+            <p>
+              You won't be handed a syllabus and left alone. Every intern is paired with a senior
+              developer who reviews your code, unblocks you when you're stuck, and helps you think
+              like an engineer — not just someone who can make a button turn blue.
+            </p>
+          </div>
+
+          <div class="about__panel glass reveal">
+            <ul class="meta-list">
+              <li><span class="meta-list__key">role</span><span class="meta-list__val">Web Developer Intern</span></li>
+              <li><span class="meta-list__key">stack</span><span class="meta-list__val">HTML, CSS, JS, React, Node</span></li>
+              <li><span class="meta-list__key">mode</span><span class="meta-list__val">Remote / Hybrid</span></li>
+              <li><span class="meta-list__key">mentorship</span><span class="meta-list__val">1:1 senior dev</span></li>
+              <li><span class="meta-list__key">certificate</span><span class="meta-list__val">On completion</span></li>
+              <li><span class="meta-list__key">letter</span><span class="meta-list__val">Recommendation available</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BENEFITS ============ -->
+    <section class="benefits" id="benefits">
+      <div class="container">
+        <p class="eyebrow reveal">// whats-included</p>
+        <h2 class="section-title reveal">What you actually get</h2>
+
+        <div class="benefits__grid">
+
+          <div class="benefit-card glass reveal">
+            <div class="benefit-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v6c0 5-3.5 7.5-8 8-4.5-.5-8-3-8-8V7l8-4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Verified Certificate</h3>
+            <p>An official completion certificate you can add to your resume and LinkedIn from day one of your job search.</p>
+          </div>
+
+          <div class="benefit-card glass reveal">
+            <div class="benefit-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5a2 2 0 012-2h9l5 5v11a2 2 0 01-2 2H6a2 2 0 01-2-2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v5h5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 13h8M8 17h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Real Portfolio Projects</h3>
+            <p>Ship features on live codebases — not toy exercises — so your GitHub actually reflects what you can do.</p>
+          </div>
+
+          <div class="benefit-card glass reveal">
+            <div class="benefit-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c0-3.6 3-6.2 7-6.2s7 2.6 7 6.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <h3>1:1 Mentorship</h3>
+            <p>Direct code review and guidance from a senior engineer, every single week — not a generic onboarding deck.</p>
+          </div>
+
+          <div class="benefit-card glass reveal">
+            <div class="benefit-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M3 12h4l2-7 4 14 2-9 2 4h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Flexible Schedule</h3>
+            <p>Part-time and full-time tracks so you can intern alongside college or your current commitments.</p>
+          </div>
+
+          <div class="benefit-card glass reveal">
+            <div class="benefit-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            </div>
+            <h3>Letter of Recommendation</h3>
+            <p>Strong performers leave with a personalized recommendation letter from their mentor, not a form template.</p>
+          </div>
+
+          <div class="benefit-card glass reveal">
+            <div class="benefit-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 4h16v12H7l-3 4V4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8 9h8M8 12h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <h3>Full-time Conversion Path</h3>
+            <p>Standout interns are considered first for full-time Web Developer roles as our teams scale.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ QUALIFICATIONS ============ -->
+    <section class="qualifications" id="qualifications">
+      <div class="container qualifications__grid">
+        <div class="reveal">
+          <p class="eyebrow">// who-we-are-looking-for</p>
+          <h2 class="section-title">Qualifications</h2>
+          <p class="qualifications__intro">
+            We care far more about how you think and build than which college you're at.
+            If most of this sounds like you, apply — we'd rather train raw curiosity than
+            wait for a "perfect" resume.
+          </p>
+        </div>
+
+        <div class="checklist glass reveal">
+          <div class="check-item">
+            <span class="check-mark" aria-hidden="true">✓</span>
+            <span>Comfortable with HTML, CSS and core JavaScript fundamentals</span>
+          </div>
+          <div class="check-item">
+            <span class="check-mark" aria-hidden="true">✓</span>
+            <span>Exposure to a framework or library (React, Vue, or similar) is a plus, not a requirement</span>
+          </div>
+          <div class="check-item">
+            <span class="check-mark" aria-hidden="true">✓</span>
+            <span>Basic familiarity with Git and version control workflows</span>
+          </div>
+          <div class="check-item">
+            <span class="check-mark" aria-hidden="true">✓</span>
+            <span>Currently pursuing or recently completed a degree in CS, IT, or a related field</span>
+          </div>
+          <div class="check-item">
+            <span class="check-mark" aria-hidden="true">✓</span>
+            <span>Can commit 15–20 hours a week for the duration of the internship</span>
+          </div>
+          <div class="check-item">
+            <span class="check-mark" aria-hidden="true">✓</span>
+            <span>Curious, self-driven, and not afraid to say "I don't know yet, but I'll find out"</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHY CHOOSE COGNIFYZ ============ -->
+    <section class="why-us" id="why-us">
+      <div class="container">
+        <p class="eyebrow reveal">// why-cognifyz</p>
+        <h2 class="section-title reveal">Why interns choose Cognifyz</h2>
+
+        <div class="why-grid">
+          <div class="why-card glass reveal">
+            <span class="why-card__tag">// culture</span>
+            <h3>Engineers mentor, not managers</h3>
+            <p>You're paired with people who still write code daily — feedback comes from the codebase, not a status meeting.</p>
+          </div>
+          <div class="why-card glass reveal">
+            <span class="why-card__tag">// impact</span>
+            <h3>Your code reaches production</h3>
+            <p>No sandbox projects that get deleted after the internship. What you build gets deployed and used.</p>
+          </div>
+          <div class="why-card glass reveal">
+            <span class="why-card__tag">// growth</span>
+            <h3>Structured, not sink-or-swim</h3>
+            <p>Weekly goals, code reviews, and check-ins keep you progressing instead of guessing what to learn next.</p>
+          </div>
+          <div class="why-card glass reveal">
+            <span class="why-card__tag">// community</span>
+            <h3>A cohort, not a solo track</h3>
+            <p>You'll build alongside other interns — pairing on features, sharing wins, and pushing each other forward.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta" id="apply">
+      <div class="container cta__inner glass reveal">
+        <h2>Ready to write your first production commit?</h2>
+        <p>Applications are reviewed on a rolling basis. The sooner you apply, the sooner we can start building together.</p>
+        <a href="https://www.cognifyz.com/internships/" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--lg" aria-label="Apply Now for the Cognifyz internship (opens in a new tab)">Apply Now</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="contact">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="#hero" class="navbar__logo">
+          <span class="logo-mark">&lt;/&gt;</span>
+          <span class="logo-text">Cognifyz<span class="logo-dot">.</span></span>
+        </a>
+        <p>Building developers, one internship at a time.</p>
+      </div>
+
+      <div class="footer__contact">
+        <h4>Get in touch</h4>
+        <a href="mailto:careers@cognifyz.com" class="footer__link">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          careers@cognifyz.com
+        </a>
+        <a href="https://www.cognifyz.com" target="_blank" rel="noopener noreferrer" class="footer__link">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M3 12h18M12 3c2.6 2.6 4 5.7 4 9s-1.4 6.4-4 9c-2.6-2.6-4-5.7-4-9s1.4-6.4 4-9z" stroke="currentColor" stroke-width="1.6"/></svg>
+          www.cognifyz.com
+        </a>
+      </div>
+
+      <div class="footer__social">
+        <h4>Follow along</h4>
+        <div class="footer__social-icons">
+          <a href="https://www.linkedin.com/company/cognifyz-technologies" target="_blank" rel="noopener noreferrer" aria-label="Cognifyz on LinkedIn (opens in a new tab)" class="social-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M8 10v7M8 7.5v.01M12 17v-4.5c0-1.4 1-2.5 2.3-2.5 1.3 0 2.2 1 2.2 2.5V17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </a>
+          <a href="https://www.instagram.com/cognifyz" target="_blank" rel="noopener noreferrer" aria-label="Cognifyz on Instagram (opens in a new tab)" class="social-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; <span id="year"></span> Cognifyz Technologies. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
